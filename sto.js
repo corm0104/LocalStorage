@@ -60,10 +60,38 @@ function updateList(){
     list.innerHTML = "";
     contacts.forEach((person)=>{
         let li = document.createElement('li');
+        
         li.setAttribute("data-id", person.id);
-        li.textContent =person.name + "-" + person.email + "-" + person.phone;
-        li.addEventListener('click', edit);
+        
+        
+        li.classList.add("contact");
+      
+         let span = document.createElement('span');
+        span.classList.add ('delete');
+        li.appendChild(span);
+        
+        
+        let h3 = document.createElement('h3');
+        li.appendChild(h3);
+        h3.textContent =person.name;
+        
+        let p = document.createElement('p');
+        p.classList.add('email');
+        li.appendChild(p);
+        p.textContent=person.email;
+        
+         let p1 = document.createElement('p');
+        p1.classList.add('phone');
+        li.appendChild(p1);
+        p1.textContent=person.phone;
+    
+        
+        //li.innerHTML = "<span class='delete'></span><h3>"+person.name + "</h3>" + "<p class='email'>" + person.email + "</p><p class='phone'>" + person.phone + "</p></li>" ;
+        
+    span.addEventListener('click', removeContact);
+        
         list.appendChild(li);
+        
         console.log(person.id);
     });
 }
@@ -96,11 +124,11 @@ function save(ev){
 }
 */
 
-function edit(ev){
+/*function edit(ev){
     let li = ev.currentTarget;
     let id = li.getAttribute('data-id');
     let selectedPerson = null;
-    ppl.people.forEach(person=>{
+    contacts.forEach(person=>{
         if( person.id == id){
             selectedPerson = person;
         }
@@ -115,6 +143,7 @@ function edit(ev){
         //such bad. no person
     }
 }
+*/
 
 //document.addEventListener('DOMContentLoaded', init);   
             
